@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col form-group">
+                <label for="nome">Digite seu nome:</label>
+                <input type="text" name="name" id="nome" class="form-control">
+            </div>
+
+            <div class="col form-group">
+                <label for="chute">Digite um numero DE 0 a 10:</label>
+                <input type="number" name="chute" id="chute" class="form-control">
+            </div>
+            <div class="col-2">
+                <button type="button" onclick="chutar()" class="btn btn-danger btn-block">Chutar</button>
+                <button type="button" onclick="verApostas()" class="btn btn-warning">Ver Chutes</button>
+            </div>
+        </div>
+
+        <div id="area-alerta"></div>
+
+        <div class="card">
+            <ul class="list-group list-group-flush" id="area-chute">
+
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        var sorteio = Math.floor(Math.random() * 11);
+        console.log(sorteio);
+        var chutes = [];
+
+        function chutar() {
+            var chute = parseInt(document.getElementById('chute').value);
+            console.log(chute);
+
+            if (chute >= 0) {
+                chutes.push(chute);
+                verificarAposta(chute);
+            }
+        }
+
+        function verificarAposta(chute) {
+            if (chute == sorteio) {
+                var alerta = document.getElementById('area-alerta');
+                console.log(alerta);
+
+                alerta.innerHTML = "<div class='alert alert-success mt-5'>VOCÊ GANHOU!</div>";
+            }
+        }
+
+        function verApostas() {
+            var area_chutes = document.getElementById('area-chute');
+            chutes.forEach((item, i) => {
+                area_chutes.innerHTML += `<li class="list-group-item">Nº do chute: ${i + 1} - Chute: ${item} </li>`
+            });
+        }
+    </script>
+</body>
+
+</html>

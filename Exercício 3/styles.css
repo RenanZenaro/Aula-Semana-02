@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.icon-container {
+    display: flex;
+    gap: 10px;
+}
+.icon {
+    width: 100px;
+    height: 100px;
+    transition: transform 0.3s;
+}
+.icon:hover {
+    transform: scale(1.2);
+}
